@@ -20,3 +20,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::prefix('posts')->group(function () {
+    Route::get('/', [\App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
+    Route::get('/{id}', [\App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
+});
+
+Route::middleware("auth:web")->group(function () {
+    Route::post('/posts/comment/{id}', [\App\Http\Controllers\PostController::class, 'comment'])->name('comment');
+});
+
