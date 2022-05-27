@@ -7,7 +7,7 @@
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="{{route('posts.index')}}" class="nav-link px-2 link-secondary">Posts</a></li>
-                <li><a href="{{url('admin/posts')}}" class="nav-link px-2 link-dark">Admin</a></li>
+                <li><a href="{{url('admin/login')}}" class="nav-link px-2 link-dark">Admin</a></li>
             </ul>
 
 
@@ -29,7 +29,7 @@
                             </a>
 
                             <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
+                                @csrf
                             </form>
                         </li>
                     </ul>

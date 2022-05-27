@@ -18,7 +18,7 @@
 
                     <p>You are logged in as {{ Auth::user()->name }}</p>
                         <br>
-                    <p><a href="{{route('index')}}" style="text-decoration: none">Tap me</a> to see Posts</p>
+                    <p><a href="{{route('posts.index')}}" style="text-decoration: none">Tap me</a> to see Posts</p>
 
                 </div>
             </div>

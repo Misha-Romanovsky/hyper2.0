@@ -10,8 +10,10 @@
                     <div class="card-header">Main Page</div>
                     <div class="card-body">
 
-                        @if(!Auth::check())
+                        @if(!auth('web'))
                             <p>If you want to see some interesting you need too login!)</p>
+                        @else
+                            {!! redirect('posts') !!}
                         @endif
                     </div>
                 </div>
