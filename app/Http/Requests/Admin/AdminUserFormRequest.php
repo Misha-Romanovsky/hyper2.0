@@ -4,6 +4,10 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @property mixed $password
+ */
+
 class AdminUserFormRequest extends FormRequest
 {
     /**
@@ -13,18 +17,34 @@ class AdminUserFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth("admin")->check();
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, mixed>
+     * @return array
      */
     public function rules()
     {
         return [
-            //
+            "name" => ["required"],
+            "email" => ["required"],
+
+            "password" => [
+                Rule::when(
+                    request()->isMethod('post'),
+                    ["required", "confirmed"],
+                    ["sometimes", "confirmed"]
+                )
+            ],
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        if(is_null($this->password)) {
+            $this->request->remove('password');
+        }
     }
 }

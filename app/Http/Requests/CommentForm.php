@@ -13,18 +13,27 @@ class CommentForm extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth("web")->check();
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, mixed>
+     * @return array
      */
     public function rules()
     {
         return [
-            //
+            "text" => ["required", "string", "max:150"],
+            "date" => ["date_format:Y-m-d,m-d"],
+            "user_id" => ["required", "exists:users,id"],
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            "user_id" => auth("web")->id()
+        ]);
     }
 }

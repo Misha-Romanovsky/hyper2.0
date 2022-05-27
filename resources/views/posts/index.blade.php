@@ -49,7 +49,7 @@
 
             @endforeach--}}
             <div class="card-header mb-3 border rounded-3">
-                <h3>Posts</h3>
+                <h3>Hot Posts</h3>
             </div>
             <div class="card-body bg-secondary">
                 @foreach($hot as $post)

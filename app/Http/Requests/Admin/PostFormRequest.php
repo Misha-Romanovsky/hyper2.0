@@ -13,18 +13,21 @@ class PostFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth("admin")->check();
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, mixed>
+     * @return array
      */
     public function rules()
     {
         return [
-            //
+            "title" => ["required"],
+            "preview" => ["required"],
+            "description" => ["required"],
+            "thumbnail" => ["image"],
         ];
     }
 }

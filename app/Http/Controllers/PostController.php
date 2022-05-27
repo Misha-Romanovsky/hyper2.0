@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CommentForm;
 use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -10,19 +11,29 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy("created_at", "DESC")->paginate(10);
+        $posts = Post::orderBy('created_at', 'DESC')->paginate(10);
 
-        $hot = Post::orderBy('created_at', "DESC")->paginate(5);
+        /*
+
+        $model = Post::with('comments.user')->orderBy('id');
+
+        $hot = '';
+
+        */
+
+        $hot = Post::orderBy('id', 'DESC')->paginate(10);
 
         return view('posts.index', compact('posts', 'hot'));
     }
 
     public function show($id)
     {
-        $post = Post::with("comments.user")->findOrFail($id);
+        $post = Post::with('comments.user')->findOrFail($id);
+
+
 
         return view('posts.show', [
-            "post" => $post,
+            'post' => $post,
         ]);
     }
 
@@ -32,6 +43,6 @@ class PostController extends Controller
 
         $post->comments()->create($request->validated());
 
-        return redirect(route("posts.show", $id));
+        return redirect(route('posts.show', $id));
     }
 }
