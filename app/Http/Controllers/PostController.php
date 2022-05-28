@@ -30,8 +30,6 @@ class PostController extends Controller
     {
         $post = Post::with('comments.user')->findOrFail($id);
 
-
-
         return view('posts.show', [
             'post' => $post,
         ]);

@@ -11,7 +11,7 @@
                     <div class="card-body">
 
                         @if(!auth('web'))
-                            <p>If you want to see some interesting you need too login!)</p>
+                            <p>If you want to see some interesting you need too <a href="{{url('login')}}" style="text-decoration: none">login!)</a></p>
                         @else
                             {!! redirect('posts') !!}
                         @endif

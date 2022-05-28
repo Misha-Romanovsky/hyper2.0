@@ -14,7 +14,7 @@
                 <h3>Our Posts</h3>
             </div>
             @foreach($posts as $post)
-                <div class=" mb-2">
+                <div class="mb-2">
                     <div class="card">
                         <div class="card-header">
                             <a href="{{ route('posts.show', $post->id) }}" class="d-flex justify-content-center">
@@ -45,9 +45,6 @@
 
         <div class="col-3">
 
-            {{--@foreach($posts as $post)
-
-            @endforeach--}}
             <div class="card-header mb-3 border rounded-3">
                 <h3>Hot Posts</h3>
             </div>

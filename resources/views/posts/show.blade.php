@@ -30,7 +30,7 @@
                     <form method="POST" action="{{route('comment', $post->id)}}">
                         @csrf
 
-                        <textarea name="text" class="w-100 shadow p-4 border-0 mb-1 rounded-3 text-xl-center @error('text') border-red-500 @enderror" placeholder="Your comment..." spellcheck="false"></textarea>
+                        <textarea name="text" class="w-100 shadow p-4 border-0 mb-1 rounded-3 text-xl-center @error('text') border-red-500 @enderror" placeholder="Your comment..." maxlength="150" spellcheck="false"></textarea>
 
                         @error('text')
                         <p class="text-danger">{{ $message }}</p>
